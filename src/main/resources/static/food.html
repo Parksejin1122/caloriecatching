@@ -273,13 +273,12 @@
         // You can use them in the calorie.html page
         localStorage.setItem('kornameArray', JSON.stringify(kornameArray));
         localStorage.setItem('calorieArray', JSON.stringify(calorieArray));
-
+       
         // Redirect to calorie.html
         window.location.href = 'calorie.html';
       })
       .catch(error => {
         console.error(error);
-        alert('서버로의 업로드에 실패했습니다.');
       });
   });
 });
