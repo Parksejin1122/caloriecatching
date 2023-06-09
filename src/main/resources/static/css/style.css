@@ -750,6 +750,20 @@ table {
 .about_menu li a:hover{
     color: #000;
 }
+
+.login-wrapper2{
+    width: 500px;
+    height: 450px;
+    padding: 40px;
+    margin: -20;
+}
+
+.login-wrapper2 > h2{
+    font-size: 30px;
+    font-weight: bold;
+    color: #7d56c9;
+    margin-bottom: 20px;
+}
 .login-wrapper{
     width: 500px;
     height: 450px;
