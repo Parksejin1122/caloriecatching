@@ -260,15 +260,10 @@ uploadButton.addEventListener('click', function() {
   })
     .then(response => response.json())
     .then(data => {
-      // Extract korname and calorie information from each item in the data array
-      const kornameArray = data.map(item => item.korname);
-      const calorieArray = data.map(item => item.calorie);
+      // 전체 데이터 배열을 로컬 저장소에 저장합니다.
+      localStorage.setItem('foodData', JSON.stringify(data));
 
-      // Save the kornameArray and calorieArray to local variables
-      localStorage.setItem('kornameArray', JSON.stringify(kornameArray));
-      localStorage.setItem('calorieArray', JSON.stringify(calorieArray));
-
-      // Redirect to calorie.html
+      // calorie.html 페이지로 이동합니다.
       window.location.href = 'calorie.html';
     })
     .catch(error => {
