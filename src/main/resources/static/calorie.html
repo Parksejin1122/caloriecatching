@@ -186,39 +186,38 @@
          
 <script>
    document.addEventListener('DOMContentLoaded', function() {
-      // Get the kornameArray and calorieArray from local storage
-      const kornameArray = JSON.parse(localStorage.getItem('kornameArray'));
-      const calorieArray = JSON.parse(localStorage.getItem('calorieArray'));
+  // Get the foodData from local storage
+  const foodData = JSON.parse(localStorage.getItem('foodData'));
 
-      // Get the dataBody element to append the rows
-      const dataBody = document.getElementById('dataBody');
+  // Get the dataBody element to append the rows
+  const dataBody = document.getElementById('dataBody');
 
-      // Iterate over the arrays and create table rows
-      for (let i = 0; i < kornameArray.length; i++) {
-        const row = document.createElement('tr');
+  // Iterate over the foodData array and create table rows
+  foodData.forEach(item => {
+    const row = document.createElement('tr');
 
-        const kornameCell = document.createElement('td');
-        kornameCell.textContent = kornameArray[i];
-        row.appendChild(kornameCell);
+    const kornameCell = document.createElement('td');
+    kornameCell.textContent = item.korname;
+    row.appendChild(kornameCell);
 
-        const calorieCell = document.createElement('td');
-        calorieCell.textContent = calorieArray[i];
-        row.appendChild(calorieCell);
+    const calorieCell = document.createElement('td');
+    calorieCell.textContent = item.calorie;
+    row.appendChild(calorieCell);
 
-        dataBody.appendChild(row);
-      }
+    dataBody.appendChild(row);
+  });
 
-      // Calculate the total calorie
-      const totalCalorie = calorieArray.reduce((a, b) => a + b, 0);
+  // Calculate the total calorie
+  const totalCalorie = foodData.reduce((total, item) => total + item.calorie, 0);
 
-      // Display the total calorie
-      const totalCalorieCell = document.getElementById('totalCalorie');
-      totalCalorieCell.textContent = totalCalorie;
+  // Display the total calorie
+  const totalCalorieCell = document.getElementById('totalCalorie');
+  totalCalorieCell.textContent = totalCalorie;
 
-      // Save the total calorie to a variable
-      const foodCalorie = totalCalorie;
-      localStorage.setItem('foodCalorie', foodCalorie);
-    });
+  // Save the total calorie to a variable
+  const foodCalorie = totalCalorie;
+  localStorage.setItem('foodCalorie', foodCalorie);
+});
 
     
 
