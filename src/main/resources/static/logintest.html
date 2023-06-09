@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Login</title>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- fevicon -->
+    <link rel="icon" type="image/png" href="images/favicon2.png">
+</head>
+<body>
+
+<div class="wrap" style="text-align: center;">
+<div class="login-wrapper">
+   <h2>LOGIN</h2>
+   <form id="login-form">
+      <input type="text" id="loginId" placeholder="ID">
+      <input type="password" id="password" placeholder="Password">
+      <input type="submit" value="Login">
+   </form>
+   
+   <a href="signup.html">회원가입 &nbsp;</a></div>
+</div>
+
+<script>
+   $(document).ready(function() {
+      $('#login-form').submit(function(event) {
+         event.preventDefault(); // Prevent the default form submission
+
+         // Get the loginId and password values
+         var loginId = $('#loginId').val();
+         var password = $('#password').val();
+
+         // Create the data object
+         var data = {
+            loginId: loginId,
+            password: password
+         };
+
+         // Send the login request
+         $.ajax({
+            url: '/user/login', // Replace with the actual login endpoint
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(response) {
+               // Handle the successful response
+               // You can access the token and other information from the response object
+               var accessToken = response.accessToken;
+               // Store the token in the local storage
+               localStorage.setItem('accessToken', accessToken);
+               // Redirect to another page or perform any other actions
+               window.location.href = 'index.html';
+            },
+            error: function(xhr, textStatus, errorThrown) {
+               // Handle the error
+               console.log(xhr.responseText);
+            }
+         });
+      });
+   });
+</script>
+</body>
+</html>
