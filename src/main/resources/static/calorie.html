@@ -185,39 +185,43 @@
       </script>  
          
 <script>
-   document.addEventListener('DOMContentLoaded', function() {
-  // Get the foodData from local storage
-  const foodData = JSON.parse(localStorage.getItem('foodData'));
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const foodData = JSON.parse(localStorage.getItem('foodData'));
 
-  // Get the dataBody element to append the rows
-  const dataBody = document.getElementById('dataBody');
+    // Get the table body element
+    const tableBody = document.getElementById('foodTableBody');
 
-  // Iterate over the foodData array and create table rows
-  foodData.forEach(item => {
-    const row = document.createElement('tr');
+    // Declare a variable to store the total calorie
+    let foodCalorie = 0;
 
-    const kornameCell = document.createElement('td');
-    kornameCell.textContent = item.korname;
-    row.appendChild(kornameCell);
+    // Iterate over the foodData array and create table rows
+    for (let i = 0; i < foodData.length; i++) {
+      const row = document.createElement('tr');
 
-    const calorieCell = document.createElement('td');
-    calorieCell.textContent = item.calorie;
-    row.appendChild(calorieCell);
+      const kornameCell = document.createElement('td');
+      kornameCell.textContent = foodData[i].korname;
+      row.appendChild(kornameCell);
 
-    dataBody.appendChild(row);
+      const calorieCell = document.createElement('td');
+      const calorieValue = foodData[i].calorie;
+      calorieCell.textContent = calorieValue;
+      row.appendChild(calorieCell);
+
+      tableBody.appendChild(row);
+
+      // Add the calorie value to the total calorie
+      foodCalorie += calorieValue;
+    }
+
+    // Display the total calorie
+    const totalCalorieCell = document.getElementById('totalCalorie');
+    totalCalorieCell.textContent = foodCalorie;
+
+    // Save the total calorie to local storage
+    localStorage.setItem('foodCalorie', foodCalorie);
   });
-
-  // Calculate the total calorie
-  const totalCalorie = foodData.reduce((total, item) => total + item.calorie, 0);
-
-  // Display the total calorie
-  const totalCalorieCell = document.getElementById('totalCalorie');
-  totalCalorieCell.textContent = totalCalorie;
-
-  // Save the total calorie to a variable
-  const foodCalorie = totalCalorie;
-  localStorage.setItem('foodCalorie', foodCalorie);
-});
+</script>
 
     
 
