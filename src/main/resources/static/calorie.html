@@ -226,13 +226,12 @@
 document.getElementById("calorieupdate").addEventListener("click", function() {
   // Get userName from decoded accessToken
   var accessToken = localStorage.getItem("accessToken");
-  localStorage.getItem("foodCalorie");
+  var foodCalorie = localStorage.getItem("foodCalorie");
   
   if (accessToken) {
   const decodedToken = atob(accessToken.split('.')[1]);
   const { sub: userName } = JSON.parse(decodedToken);
   // Get foodCalorie from local variable
-  var foodCalorie = foodCalorie; // Assuming foodCalorie is a valid local variable
 
   // Prepare request body
   var requestBody = {
